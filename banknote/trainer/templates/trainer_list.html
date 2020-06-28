@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% load bootstrap4 %}
+{% load static %}
+{% block content %}
+{% ifequal user.Role "admin"  %}
+
+<!-- ======= Team Section ======= -->
+<section id="team" class="team section-bg">
+  <div class="container">
+
+    <div class="section-title">
+      <h2 >Team</h2>
+    </div>
+
+    <div class="row">
+      {% for trainer in trainer_list %}
+      <div class="col-xl-3 col-lg-4 col-md-6">
+        <div class="member" >
+          <div class="pic"><a href="{% url 'trainer:details' pk=trainer.pk%}"><img src="{{ trainer.Image_URL }}" alt=""></a></div>
+          <h4>{{ trainer.Name }}</h4>
+          <span>{{ trainer.Title }}</span>
+          <div class="social">
+            <a href="{{ trainer.Facebook_URL }}"><i class="icofont-facebook"></i></a>
+            <a href="{{ trainer.Whatsapp_Number }}"><i class="icofont-whatsapp"></i></a>
+            <a href=" {{trainer.Instagram_URL}} "><i class="icofont-instagram"></i></a>
+            <a href=" {{ trainer.Linkedin_URL }} "><i class="icofont-linkedin"></i></a>
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+
+
+
+  </div>
+</section><!-- End Team Section -->
+
+{% endifequal %}
+
+{% endblock %}

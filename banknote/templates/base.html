@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Banknote Academy</title>
+  <meta content="" name="descriptison">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="{% static 'assets/img/favicon.png'%}" rel="icon">
+  <link href="{% static 'assets/img/apple-touch-icon.png'%}" rel="apple-touch-icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="{% static 'assets/vendor/bootstrap/css/bootstrap.min.css'%}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/icofont/icofont.min.css'%}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/boxicons/css/boxicons.min.css'%}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/owl.carousel/assets/owl.carousel.min.css'%}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/venobox/venobox.css'%}" rel="stylesheet">
+  <link href="{% static 'assets/vendor/aos/aos.css'%}" rel="stylesheet">
+
+  <script src="//cdn.jsdelivr.net/medium-editor/latest/js/medium-editor.min.js"></script>
+  <link rel="stylesheet" href="//cdn.jsdelivr.net/medium-editor/latest/css/medium-editor.min.css" type="text/css" media="screen" charset="utf-8">
+
+  <!-- Template Main CSS File -->
+  <link rel="stylesheet" href="{% static "css/style.css" %}">
+
+  <link href="{% static 'assets/css/style.css'%}" rel="stylesheet">
+  <!-- <link rel="stylesheet" href="{% static "courses/css/style.css" %}"> -->
+
+<!-- animation css -->
+<link
+ rel="stylesheet"
+ href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.0.0/animate.min.css"/>
+  {% block head %}
+
+  {% endblock %}
+
+</head>
+  <body>
+
+      <header class="header ">
+        <div class="container d-flex align-items-center " >
+
+          <div class="logo mr-auto">
+            <h1 class="text-light"><a href="{% url 'home' %}">Banknote<span>.</span>  </a><img src="{% static 'assets/img/logo.png'%}" alt="" class="img-fluid">
+    </h1>
+            <!-- Uncomment below if you prefer to use an image logo -->
+          </div>
+
+          <nav class="nav-menu d-none d-lg-block ">
+            <ul>
+              <li class="active"><a href="{% url 'home' %}">Home</a></li>
+              {% if user.is_authenticated %}
+{% if user.Role == 'admin' %}
+              <li class="drop-down"><a href="">Admin</a>
+          <ul>
+            <li class="drop-down"><a href="#">Course</a>
+              <ul>
+                <li><a href="{% url 'course:create' %}">Create Course</a></li>
+                <li><a href="{%url 'course:add_trainer_to_course'%}">Add Trainer to a Course</a></li>
+
+              </ul>
+            </li>
+            <li class="drop-down"><a href="#">Trainer</a>
+              <ul>
+                <li><a href="{% url 'trainer:create' %}">Add Trainer</a></li>
+                <li><a href="{% url 'trainer:trainer_list' %}">Trainer List</a></li>
+
+              </ul>
+            </li>
+            <li class="drop-down"><a href="#">Applications</a>
+              <ul>
+                <li><a href="{% url 'application:applicants_list' %}">Waiting</a></li>
+                <li><a href="{% url 'application:accepted_list' %}">Accepted</a></li>
+
+              </ul>
+            </li>
+          </ul>
+        </li>
+        {% endif %}
+        {% endif %}
+              <li><a href="#about">About Us</a></li>
+              <li><a href="#services">Courses</a></li>
+              <li><a href="#team">Team</a></li>
+              <li><a href="#contact">Contact Us</a></li>
+              {% if user.is_authenticated %}
+              <li><a href="{% url 'users:myapplication_list' %}">My Courses</a></li>
+              {% endif %}
+              {% if user.is_authenticated %}
+              <li class="drop-down"><a href="">{{user.first_name}}</a>
+
+                <ul>
+                  <li><a href="{% url 'users:edit' pk=user.pk%}">Edit Profile</a></li>
+                  <li><a href="{% url 'users:password_change'%}">Change Password</a></li>
+                  <li><a href="{% url 'users:logout'%}">Logout</a></li>
+
+                  </ul>
+                </li>
+                {% else %}
+                <li><a href="{% url 'users:signup' %}">Sign Up</a></li>
+                <li><a href="{% url 'users:login' %}">Login</a></li>
+
+                {% endif %}
+
+            </ul>
+          </nav><!-- .nav-menu -->
+
+        </div>
+      </header><!-- End Header -->
+      {% block content %}
+
+      {% endblock %}
+  </body>
+</html>

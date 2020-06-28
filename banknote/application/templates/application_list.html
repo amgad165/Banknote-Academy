@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block content %}
+{% ifequal user.Role "admin"  %}
+
+<div class="container">
+  <div class="jumbotron">
+
+  <h1>Waiting for Apply Applications</h1>
+</div>
+
+  <div class="row">
+  {% for application in application_list %}
+  {% ifequal application.Status "Waiting for apply" %}
+  <div class="col-12 col-md-4">
+
+  <div class="card" style="width: 25rem;">
+    <div class="card-body">
+      <h1 class="card-title">Course: {{application.course.Name}}</h1>
+
+      <h4>User Details:</h4>
+      <p>Name : {{ application.user.first_name }} {{application.user.last_name}}</p>
+      <p>Applying Date : {{ application.Apply_Date }}</p>
+      <p>College : {{ application.user.College }}</p>
+      <p>University : {{ application.user.University }}</p>
+      <p>Application Status: {{ application.Status }}</p>
+
+      <a href="{% url 'application:detail' pk=application.pk %}"><input class="btn btn-primary" type="button" name="" value="Detail"></a>
+
+    <a href="{% url 'application:remove' pk=application.pk %}"><input class="btn btn-danger" type="submit" name="" value="Delete"></a>
+
+    </div>
+
+    </div>
+  </div>
+{% endifequal %}
+    {% endfor %}
+
+</div>
+
+</div>
+
+
+
+
+{% endifequal %}
+
+
+
+
+{% endblock %}

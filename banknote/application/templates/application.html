@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block content %}
+
+
+
+<div class="container">
+
+<form  method="post">
+{% csrf_token %}
+<div class="form-group">
+{% for question in questions %}
+<label for="id_Name"><h2>{{question.question}}</h2></label>
+<textarea name="answer" maxlength="1500" class="form-control" placeholder="Answer"  required id="id_Name" rows="5"></textarea>
+
+
+{% endfor %}
+
+ </div>
+<input id="btn-in-appliction" class="btn btn-primary form-group" type="submit" name="" value="Submit">
+</form>
+
+
+
+
+{% endblock %}

@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block content %}
+
+{% ifequal user.Role "admin"  %}
+
+
+<div class="container">
+<div class="jumbotron">
+
+
+<form  method="post">
+{% csrf_token %}
+<h1>Add Question to the Course Form</h1>
+<div class="form-group"><label for="id_Name">Question:</label><input type="text" name="question" maxlength="255" class="form-control" placeholder="Add Question"  required id="id_Name"></div>
+<input class="btn btn-primary" type="submit" name="" value="Submit">
+</form>
+</div>
+ </div>
+ {% endifequal %}
+
+
+{% endblock %}

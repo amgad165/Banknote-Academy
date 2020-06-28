@@ -1,0 +1,50 @@
+{% extends "base.html" %}
+{% block content %}
+{% ifequal user.Role "admin"  %}
+<div class="container">
+
+<div class="jumbotron">
+  <h1>Accepted Applications</h1>
+
+</div>
+
+  <div class="row">
+  {% for application in application_list %}
+  {% ifequal application.Status "Accepted" %}
+  <div class="col-12 col-md-3">
+
+  <div class="card" style="width: 18rem;">
+    <div class="card-body">
+      <h2 class="card-title">Application</h2>
+      <h3 >Course: {{application.course.Name}}</h3>
+      <h4>User Details:</h4>
+      <p>Name : {{ application.user.first_name }} {{application.user.last_name}}</p>
+      <p>College : {{ application.user.College }}</p>
+      <p>University : {{ application.user.University }}</p>
+      <p>Phone Number: {{ application.user.phone_number }}</p>
+      <p>Application Status: {{ application.Status }}</p>
+
+      <a href="{% url 'application:detail' pk=application.pk %}"><input class="btn btn-primary" type="button" name="" value="Detail"></a>
+
+    <a href="{% url 'application:remove' pk=application.pk %}"><input class="btn btn-danger" type="submit" name="" value="Delete"></a>
+
+    </div>
+
+    </div>
+  </div>
+{% endifequal %}
+    {% endfor %}
+
+</div>
+
+
+</div>
+
+
+
+{% endifequal %}
+
+
+
+
+{% endblock %}

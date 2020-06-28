@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% load bootstrap4 %}
+
+{% block content %}
+{% ifequal user.Role "admin"  %}
+
+<div class="container">
+
+  <form method="POST" class="form">
+    {% csrf_token %}
+    {% bootstrap_form form %}
+    {% buttons %}
+      <button type="submit" class="btn btn-primary">Update</button>
+    {% endbuttons %}
+  </form>
+</div>
+{% endifequal %}
+
+{% endblock %}

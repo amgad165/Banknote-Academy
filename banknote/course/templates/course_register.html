@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% load bootstrap4 %}
+
+{% block content %}
+
+{% ifequal user.Role "admin"  %}
+
+<div class="container">
+
+  <h1>Create Course</h1>
+  <form method="POST" class="form">
+    {% csrf_token %}
+    {% bootstrap_form form %}
+    {% buttons %}
+    <div class="form-group">
+  <label for="sel1">Select Status:</label>
+  <select class="form-control" id="sel1" name="status">
+    <option>Available</option>
+    <option>In progress</option>
+    <option>not yet available</option>
+  </select>
+</div>
+
+      <button type="submit" class="btn btn-primary">Create</button>
+    {% endbuttons %}
+  </form>
+</div>
+{% endifequal %}
+
+<script>var editor = new MediumEditor('.editable');</script>
+
+{% endblock %}

@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+{% block content %}
+{% load custom_tags %}
+
+<div class="container">
+
+
+<div class="col-12">
+
+<div class="card" >
+  <div class="card-body">
+    <div id="center" class="inside-application">
+    <h1 class="card-title">Course: {{application.course.Name}}</h1>
+
+    <h4>User Details:</h4>
+    <p>Name : {{ application.user.first_name }} {{application.user.last_name}}</p>
+    <p>Email : {{ application.user.email }}</p>
+    <p>Applying Date : {{ application.Apply_Date }}</p>
+    <p>College : {{ application.user.College }}</p>
+    <p>University : {{ application.user.University }}</p>
+    <p>Phone Number: {{ application.user.phone_number }}</p>
+
+    <p>Application Status: {{ application.Status }}</p>
+</div>
+<div class="row">
+<div class="col-12">
+<h2>Questions:</h2>
+<br>
+{% for question in questions %}
+<h3>    {{ forloop.counter }}- {{question.question}}</h3>
+<br>
+<br>
+{% endfor %}
+</div>
+
+<div class="col-12">
+<h2>Answers:</h2>
+<br>
+{% for answer in application.answer|split %}
+<p> {{ forloop.counter }}- {{answer}}</p>
+<br>
+<br>
+{% endfor %}
+</div>
+{% ifequal application.Status "Waiting for apply"  %}
+<a href="{% url 'application:apply' pk=application.pk%}"><input class="btn btn-primary" type="submit" name="" value="Apply"></a>
+{% endifequal %}
+<a href="{% url 'application:remove' pk=application.pk%}"><input class="btn btn-danger" type="submit" name="" value="Delete"></a>
+
+</div>
+</div>
+
+
+    </div>
+    </div>
+
+
+
+
+
+</div>
+
+
+
+
+
+
+
+
+{% endblock %}

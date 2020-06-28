@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% block content %}
+
+{% ifequal user.Role "admin"  %}
+
+
+<div class="container">
+
+<form  method="post">
+{% csrf_token %}
+<div class="form-group">
+<label for="sel1">Select Trainer:</label>
+<select class="form-control" id="sel1" name="trainer">
+  {% for trainer in trainers %}
+  <option>{{trainer.Name}}</option>
+
+  {% endfor %}
+
+</select>
+</div>
+
+<div class="form-group">
+<label for="sel1">Select Course:</label>
+<select class="form-control" id="sel1" name="course">
+  {% for course in courses %}
+  <option>{{course.Name}}</option>
+
+  {% endfor %}
+
+</select>
+</div>
+<input class="btn btn-primary" type="submit" name="" value="Submit">
+</form>
+
+ </div>
+ {% endifequal %}
+
+
+{% endblock %}

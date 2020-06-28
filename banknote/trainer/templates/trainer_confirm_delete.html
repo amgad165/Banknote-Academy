@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container">
+  {% ifequal user.Role "admin"  %}
+
+
+<div class="col-12 delete">
+
+  <form action="" method="post">
+    {% csrf_token %}
+    <div class="col-12">
+
+
+    <h1>Are you sure you want to delete "{{ object }}"?</h1>
+  </div>
+  <div class="col-6 offset-4 buttons">
+
+    <input class='btn btn-danger' type="submit" value="Confirm" />
+    <a href="{%url 'trainer:trainer_list'%}"><button class="btn btn-secondary" type="button" name="button">Cancel</button></a>
+  </form>
+</div>
+</div>
+</div>
+{% endifequal %}
+
+{% endblock %}

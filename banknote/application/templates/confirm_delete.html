@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container">
+<div class="col-12 delete">
+
+  <form action="" method="post">
+    {% csrf_token %}
+    <div class="col-12">
+
+    <h1 id="center">Are you sure you want to delete "{{ object }} Course"?</h1>
+  </div>
+  <div class="col-6 offset-4 buttons">
+
+    <input class='btn btn-danger' type="submit" value="Confirm" />
+    <a href="{%url 'application:applicants_list'%}"><button class="btn btn-secondary" type="button" name="button">Cancel</button></a>
+  </form>
+</div>
+</div>
+</div>
+
+{% endblock %}
